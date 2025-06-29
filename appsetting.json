@@ -1,0 +1,5 @@
+{
+  "ConnectionString": {
+    "DBConnection": "Server = . ; Database = Library Management System ; Integrated Security = True ; Encrypt = False"
+  }
+}

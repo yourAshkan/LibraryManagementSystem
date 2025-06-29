@@ -1,13 +1,13 @@
 Features:
 
-•Add, list, update, and delete books
+1-Add, list, update, and delete books
 
-•Register and view members
+2-Register and view members
 
-•Borrow and return books with availability tracking
+3-Borrow and return books with availability tracking
 
-•View all or active borrow records
+4-View all or active borrow records
 
-•Relational data modeled with EF Core and SQL Server
+5-Relational data modeled with EF Core and SQL Server
 
-•Implements Repository Pattern and basic SOLID
+6-Implements Repository Pattern and basic SOLID

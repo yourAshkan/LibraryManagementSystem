@@ -37,10 +37,15 @@ public class BookService
     public void ListBook()
     {
         var books = _repo.GetAll();
-        Console.WriteLine("\nBook List: ");
-        foreach (var book in books)
+        if (books.Count > 0)
         {
-            Console.WriteLine($"{book.Id}: {book.Title} by {book.Author} - Copies: {book.AvailableCopies}");
+            Console.WriteLine("\nBook List: ");
+            foreach (var book in books)
+            {
+                Console.WriteLine($"{book.Id}: {book.Title} by {book.Author} - Copies: {book.AvailableCopies}");
+            }
         }
+        if (books.Count == 0)
+            Console.WriteLine("Library is Empty!");
     }
 }

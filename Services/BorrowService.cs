@@ -6,26 +6,34 @@ namespace LibraryManagementSystem.Services;
 public class BorrowService
 {
     private readonly IBorrowRepository _repo;
+    private readonly IBookRepository _bookRepo;
     public BorrowService()
     {
         _repo = new BorrowRepository();
+        _bookRepo = new BookRepository();
     }
     public void BorrowBook()
     {
-        Console.WriteLine("Book ID: ");
-        int bookId = int.Parse(Console.ReadLine());
-        Console.WriteLine("Member ID: ");
-        int memeberId = int.Parse(Console.ReadLine());
+        var availablebook = _bookRepo.GetAll();
+        if (availablebook.Count != 0)
+        {
+            Console.WriteLine("Book ID: ");
+            int bookId = int.Parse(Console.ReadLine());
+            Console.WriteLine("Member ID: ");
+            int memeberId = int.Parse(Console.ReadLine());
 
-        try
-        {
-            _repo.BorrowBook(bookId, memeberId);
-            Console.WriteLine("Book Borrowed.");
+            try
+            {
+                _repo.BorrowBook(bookId, memeberId);
+                Console.WriteLine("Book Borrowed.");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error: {ex.Message}");
+            }
         }
-        catch (Exception ex)
-        {
-            Console.WriteLine($"Error: {ex.Message}");
-        }
+        else
+            Console.WriteLine("There is no Book for Borrow!");
     }
     public void ReturnBook()
     {
@@ -41,7 +49,7 @@ public class BorrowService
         foreach (var borrow in borrows)
         {
             var status = borrow.ReturnDate == null ? "Not Returned!" : $"Returned on {borrow.ReturnDate.Value.ToShortDateString()}";
-            Console.WriteLine($"{borrow.Id}: {borrow.Book.Title} > {borrow.Member.FirstName + " " + borrow.Member.LastName} | {borrow.BorrowDate.ToShortDateString()} | {status}");
+            Console.WriteLine($"{borrow.Id}: {borrow.Book.Title}Borrowed to {borrow.Member.FirstName + " " + borrow.Member.LastName} | {borrow.BorrowDate.ToShortDateString()} | {status}");
         }
     }
 }

@@ -41,11 +41,16 @@ public class MemberService
     }
     public void ListMember()
     {
-        var Memeber = _repo.GetAll();
-        Console.WriteLine("\nMembers List: ");
-        foreach (var member in Memeber)
-        {
-            Console.WriteLine($"{member.Id}: {member.FirstName} {member.LastName} | {member.NationalCode}");
+        var memebers = _repo.GetAll();
+        if (memebers.Count > 0)
+            {
+            Console.WriteLine("\nMembers List: ");
+            foreach (var member in memebers)
+            {
+                Console.WriteLine($"{member.Id}: {member.FirstName} {member.LastName} | {member.NationalCode}");
+            }
         }
+        if (memebers.Count == 0)
+            Console.WriteLine("Library Has no Member!");
     }
 }

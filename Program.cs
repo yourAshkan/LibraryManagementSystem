@@ -57,7 +57,7 @@ try
 }
 catch (Exception ex)
 {
-    Console.WriteLine($"Error: {ex.Message}");
+    Console.WriteLine($"Invalid Input!");
 }
 
 Console.ReadKey();

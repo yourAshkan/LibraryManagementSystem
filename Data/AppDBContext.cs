@@ -12,7 +12,7 @@ public class AppDBContext : DbContext
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
         var configBuilder = new ConfigurationBuilder();
-        var configuration = configBuilder.AddJsonFile(@"D:\Visual Studio\Project\New\LibraryManagementSystem\appsetting.json").Build();
+        var configuration = configBuilder.AddJsonFile(@"appsetting.json").Build();
         var configSection = configuration.GetSection("ConnectionString");
         var configString = configSection["DBConnection"];
 

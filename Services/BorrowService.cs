@@ -24,7 +24,7 @@ public class BorrowService
 
             try
             {
-                _repo.BorrowBook(bookId, memeberId);
+                _repo.BorrowBook(bookId, memeberId,DateTime.Now);
                 Console.WriteLine("Book Borrowed.");
             }
             catch (Exception ex)
@@ -39,7 +39,7 @@ public class BorrowService
     {
         Console.WriteLine("Borrow ID: ");
         int borrowId = int.Parse(Console.ReadLine());
-        _repo.ReturnBook(borrowId);
+        _repo.ReturnBook(borrowId,DateTime.Now);
         Console.WriteLine("Book Returned!");
     }
     public void ListAllBorrows()
@@ -49,7 +49,7 @@ public class BorrowService
         foreach (var borrow in borrows)
         {
             var status = borrow.ReturnDate == null ? "Not Returned!" : $"Returned on {borrow.ReturnDate.Value.ToShortDateString()}";
-            Console.WriteLine($"{borrow.Id}: {borrow.Book.Title}Borrowed to {borrow.Member.FirstName + " " + borrow.Member.LastName} | {borrow.BorrowDate.ToShortDateString()} | {status}");
+            Console.WriteLine($"{borrow.Id}: {borrow.Book.Title} Borrowed to {borrow.Member.FirstName + " " + borrow.Member.LastName} | {borrow.BorrowDate.ToShortDateString()} | {status}");
         }
     }
 }

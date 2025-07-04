@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace LibraryManagementSystem.Migrations
 {
     [DbContext(typeof(AppDBContext))]
-    [Migration("20250630100920_Init")]
-    partial class Init
+    [Migration("20250702085435_MakeReturnDateTonullable")]
+    partial class MakeReturnDateTonullable
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

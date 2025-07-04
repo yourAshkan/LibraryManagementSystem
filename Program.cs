@@ -58,6 +58,7 @@ try
 catch (Exception ex)
 {
     Console.WriteLine($"Invalid Input!");
+    return;
 }
 
-Console.ReadKey();
+

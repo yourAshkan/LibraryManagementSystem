@@ -12,7 +12,7 @@ public class BorrowRepository : IBorrowRepository
     {
         _context = new AppDBContext();
     }
-    public void BorrowBook(int bookid, int memberid)
+    public void BorrowBook(int bookid, int memberid, DateTime date)
     {
         var book = _context.books.Find(bookid);
         if (book == null || book.AvailableCopies <= 0)
@@ -22,20 +22,19 @@ public class BorrowRepository : IBorrowRepository
         {
             BookId = bookid,
             MemberId = memberid,
-            BorrowDate = DateTime.Now,
+            BorrowDate = Tools.PersianCalendar(date),
         };
 
         book.AvailableCopies--;
         _context.Borrows.Add(borrow);
         _context.SaveChanges();
     }
-    public void ReturnBook(int id)
+    public void ReturnBook(int id,DateTime date)
     {
         var borrow = _context.Borrows.Include(x=>x.Book).FirstOrDefault(x=>x.Id == id && x.ReturnDate == null);
-        
-        if(borrow != null)
+        if (borrow != null)
         {
-            borrow.ReturnDate = DateTime.Now;
+            borrow.ReturnDate = Tools.PersianCalendar(date);
             borrow.Book.AvailableCopies++;
             _context.SaveChanges();
         }
